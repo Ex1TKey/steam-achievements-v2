@@ -4,7 +4,7 @@ import requests
 import os
 from typing import List, Optional
 
-# Инициализация приложения с твоим названием
+# Инициализация приложения
 app = FastAPI(
     title="Консоль достижений STEAM v2.0",
     description="Информационная система учета достижений пользователей | Бибов Д.Р. | ИСП-40",
@@ -14,14 +14,14 @@ app = FastAPI(
 # Настройка CORS, чтобы React (localhost:3000) мог делать запросы
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # В продакшене здесь будет адрес твоего сайта на Vercel
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Твой API Ключ Steam (рекомендую вынести в .env файл)
-STEAM_API_KEY = "ТВОЙ_КЛЮЧ_STEAM"
+# API Ключ Steam
+STEAM_API_KEY = os.getenv("STEAM_API_KEY")
 
 
 @app.get("/", tags=["Системные"])
@@ -51,7 +51,6 @@ async def get_achievements(steam_id: str, app_id: int):
         response = requests.get(url)
         data = response.json()
 
-        # Здесь также можно добавить логику сохранения в MongoDB для формирования ТОПа
 
         if "playerstats" not in data:
             raise HTTPException(status_code=404, detail="Данные о достижениях не найдены")
@@ -63,8 +62,7 @@ async def get_achievements(steam_id: str, app_id: int):
 @app.get("/stats/top/{app_id}", tags=["База Данных"])
 async def get_game_top(app_id: int):
     """Получение списка лидеров по конкретной игре из локальной БД"""
-    # Здесь должна быть твоя логика работы с MongoDB (например, через motor или pymongo)
-    # Ниже — пример заглушки, которую нужно заменить на реальный запрос к БД
+    
     sample_top = [
         {"steam_id": "76561198769027509", "achievements_unlocked": 42, "total_achievements": 50},
         {"steam_id": "76561199160562383", "achievements_unlocked": 38, "total_achievements": 50}
