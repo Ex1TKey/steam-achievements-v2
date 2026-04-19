@@ -1,4 +1,4 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://steam-achievements-v2.onrender.com";
 
 export const getSteamGames = async (steamId) => {
   const response = await fetch(`${API_URL}/steam/games/${steamId}`);
