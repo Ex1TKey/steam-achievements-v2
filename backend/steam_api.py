@@ -2,7 +2,7 @@ import httpx
 import os
 
 # Твой API ключ Steam. В идеале его лучше держать в .env файле
-STEAM_API_KEY = "DF3C7E35B3C5E2834E43E372A1824A9C"
+STEAM_API_KEY = os.getenv("STEAM_API_KEY")
 
 
 async def get_player_games(steam_id: str):
