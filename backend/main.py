@@ -31,7 +31,7 @@ db = client.steam_database  # Название базы данных
 
 @app.get("/", tags=["Системные"])
 async def read_root():
-    return {"status": "online", "project": "Steam Achievements Console v2.0"}
+    return {"status": "online", "project": "Steam Achievements Console"}
 
 @app.get("/steam/games/{steam_id}", tags=["Steam API"])
 async def get_games(steam_id: str):
