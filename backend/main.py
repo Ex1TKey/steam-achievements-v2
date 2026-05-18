@@ -7,9 +7,9 @@ from typing import List, Optional
 
 # Инициализация приложения
 app = FastAPI(
-    title="Консоль достижений STEAM",
+    title="Консоль достижений STEAM v2.0",
     description="Информационная система учета достижений пользователей | Бибов Д.Р. | ИСП-40",
-    version=""
+    version="2.0"
 )
 
 # Настройка CORS
